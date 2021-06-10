@@ -1,0 +1,26 @@
+<%-include("header");-%>
+    <div class="heading divForAll">
+        <h1>
+            <%=title%>
+        </h1>
+    </div>
+    <div class="container">
+        <%newItems.forEach((item)=>{%>
+            <form action="/delete" method="post">
+                <div class="divForAll listItems">
+                    <input class="check" type="checkbox" onchange="this.form.submit()" value="<%=item._id%>"
+                        name="check">
+                    <p>
+                        <%=item.name%>
+                    </p>
+                </div>
+                <input type="hidden" value="<%=title%>" name="del">
+            </form>
+            <% });%>
+
+                <form class="addNewItems" action="/" method="post">
+                    <input type="text" name="input" id="in" placeholder="Add new item" autocomplete="off">
+                    <button name="add" class="btn" value="<%=title%>">+</button>
+                </form>
+    </div>
+    <%-include("footer");-%>
