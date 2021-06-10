@@ -4,7 +4,16 @@ const app = express();
 const _ = require("lodash");
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://ThakurRJ:mongowithRJ@18@list.ibzb0.mongodb.net/tododb", { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
+const address = "mongodb+srv://rajul:rajul@18@cluster0.pmxze.mongodb.net/LISTDB?retryWrites=true&w=majority"
+mongoose.connect(address, { 
+    useFindAndModify: false, 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+    useCreateIndex:true }).then(()=>{
+        console.log("connection succesfull");
+    }).catch((err)=>{
+        console.log("no connection");
+    });
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -124,7 +133,7 @@ app.post("/delete", (req, res) => {
 });
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+    port = 3000;
 }
 
 app.listen(port, () => {
