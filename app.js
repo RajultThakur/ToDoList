@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 
 const _ = require("lodash");
 
@@ -123,27 +122,11 @@ app.post("/delete", (req, res) => {
 
 
 });
-
-
-
-
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
 app.listen(port, () => {
-    console.log("Ya bro all things are working fine");
-})
-
-// CustomList.findOne({ name: CustomRoute }, (err, Present) => {
-//     if (!err) {
-//         if (!Present) {
-//             const customlist = new CustomList({
-//                 name: CustomRoute,
-//                 CustomItems: listarray
-//             });
-//             customlist.save();
-//             res.redirect("/" + CustomRoute);
-//         }
-//         else {
-//             res.render("app", { title: Present.name, newItems: Present.items })
-//         }
-//     }
-// });
+    console.log("Surver is running on port : 3000");
+});
